@@ -5,7 +5,7 @@ import Header from './components/Header';
 //useState array 2 position/ 1-valor inicial 2-funcao p/atualizar
 
 function App() {
-  const [projects, setProjects] = useState(['Raniel', 'Pedro']);
+  const [projects, setProjects] = useState(['Pedro', 'Gomes']);
 
   function handleAdd() {
     setProjects([...projects, 'Novo Projeto']);

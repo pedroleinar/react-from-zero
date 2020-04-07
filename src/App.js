@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from './components/Header';
 
+//useState array 2 position/ 1-valor inicial 2-funcao p/atualizar
+
 function App() {
+  const [projects, setProjects] = useState(['Raniel', 'Pedro']);
+
+  function handleAdd() {
+    setProjects([...projects, 'Novo Projeto']);
+    console.log(projects);
+  }
+
   return (
     <>
       <Header title="Pedro" />
-      <Header title="Gomes" />
-      <Header title="Leinar">
-        <ul>
-          <li>NickName</li>
-        </ul>
-      </Header>
+      <ul>
+        {projects.map((project) => (
+          <li key={project}>{project}</li>
+        ))}
+      </ul>
+
+      <button type="button" onClick={handleAdd}>
+        Add
+      </button>
     </>
   );
 }

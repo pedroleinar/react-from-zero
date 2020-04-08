@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
 import Header from './components/Header';
+import './App.css';
 
 //useState array 2 position/ 1-valor inicial 2-funcao p/atualizar
 
@@ -15,6 +15,7 @@ function App() {
   return (
     <>
       <Header title="Pedro" />
+
       <ul>
         {projects.map((project) => (
           <li key={project}>{project}</li>

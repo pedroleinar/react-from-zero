@@ -1,24 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
+import api from './services/api';
+
 import './App.css';
 
-//useState array 2 position/ 1-valor inicial 2-funcao p/atualizar
-
 function App() {
-  const [projects, setProjects] = useState(['Pedro', 'Gomes']);
+  const [projects, setProjects] = useState([]);
 
-  function handleAdd() {
-    setProjects([...projects, 'Novo Projeto']);
-    console.log(projects);
+  useEffect(() => {
+    api.get('projects').then((response) => {
+      setProjects(response.data);
+    });
+  }, []);
+
+  async function handleAdd() {
+    const response = await api.post('projects', {
+      title: 'Projeto Mobile',
+      owner: 'Pedro Gomes',
+    });
+
+    setProjects([...projects, response.data]);
   }
 
   return (
     <>
-      <Header title="Pedro" />
+      <Header title="Projects" />
 
       <ul>
         {projects.map((project) => (
-          <li key={project}>{project}</li>
+          <li key={project.id}>{project.title}</li>
         ))}
       </ul>
 
@@ -34,3 +44,4 @@ export default App;
 // Componente
 // Propriedade
 // Estado
+//useState array 2 position/ 1-valor inicial 2-funcao p/atualizar
